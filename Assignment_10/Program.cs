@@ -45,6 +45,82 @@
             // However, a class can implement multiple interfaces.
 
             #endregion
+
+
+            #region Question Part 02 : Practical
+            //   Part 02 : Practical   //
+
+            DeliveryCenter deliveryCenter = new DeliveryCenter(" Delivery Center");
+
+            DeliveryAddress address = new DeliveryAddress( "Cairo", "Nasr City", 10 );
+
+            StandardShipment standardShipment = new StandardShipment("SH001", "Laptop",3,80,address);
+
+            ExpressShipment expressShipment = new ExpressShipment("SH002", "Mobile Phone", 2, 60, address, 30);
+
+            InternationalShipment internationalShipment = new InternationalShipment("SH003", "Tablet", 8, 120, address, "Germany" , 100);
+
+            deliveryCenter.AddShipment(standardShipment);
+            deliveryCenter.AddShipment(expressShipment);
+            deliveryCenter.AddShipment(internationalShipment);
+
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Delivery Center");
+            Console.WriteLine("==========================================");
+
+            deliveryCenter.PrintAllShipments();
+
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Tracking Status");
+            deliveryCenter.PrintTrackingStatuses();
+
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Insurance");
+
+            Console.WriteLine($"Standard Shipment Insurance : " +
+                $"{standardShipment.CalculateInsurance():0.00} EGP");
+
+            Console.WriteLine($"Express Shipment Insurance : " +
+                $"{expressShipment.CalculateInsurance():0.00} EGP");
+
+            Console.WriteLine($"International Shipment Insurance : " +
+                $"{internationalShipment.CalculateInsurance():0.00} EGP");
+
+
+            Console.WriteLine("==========================================");
+
+            ITrackable[] trackableShipments = {
+                standardShipment,
+                expressShipment,
+                internationalShipment
+            };
+
+            for (int i = 0;i < trackableShipments.Length;i++)
+            {
+                DeliveryReport.PrintShipment(trackableShipments[i]);
+            }
+
+            Console.WriteLine("==========================================");
+
+            IInsurable[] insurableShipments = {
+                standardShipment,
+                expressShipment,
+                internationalShipment
+            };
+
+            for (int i = 0;i < insurableShipments.Length; i++)
+            {
+                DeliveryReport.PrintInsurance(insurableShipments[i]);
+            }
+
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Interface Polymorphism Demonstrated Successfully.");
+
+
+            #endregion
+
         }
     }
 }
+            
+  
